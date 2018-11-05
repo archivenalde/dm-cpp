@@ -6,8 +6,11 @@
 
 class HubMultimodal : public HubAeroport, public Gare
 {
+protected:
+    HubMultimodal();
 public:
-    HubMultimodal(double _latitude, double _longitude);
+    HubMultimodal(double, double);
+    ~HubMultimodal();
 };
 
 #endif

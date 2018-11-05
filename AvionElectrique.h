@@ -6,7 +6,8 @@
 class AvionElectrique : public Moyen
 {
 public:
-    AvionElectrique(int, double, double);
+    AvionElectrique();
+    ~AvionElectrique();
 };
 
 #endif

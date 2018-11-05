@@ -3,10 +3,13 @@
 
 #include "Terminal.h"
 
-class Gare : public Terminal
+class Gare : virtual public Terminal
 {
+protected:
+    Gare();
 public:
-    Gare(double _latitude, double _longitude);
+    Gare(double, double);
+    ~Gare();
 };
 
 #endif

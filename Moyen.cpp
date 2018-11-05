@@ -1,8 +1,10 @@
 #include "Moyen.h"
 
+Moyen::Moyen(int _capacite, double _vitesse, double _empreinte)
+: capacite(_capacite), vitesse(_vitesse), empreinte(_empreinte)
+{}
 
-Moyen::Moyen(int _c, double _v, double _e)
-: capacite(_c), vitesse(_v), empreinte(_e)
+Moyen::~Moyen()
 {}
 
 int Moyen::getCapacite() const

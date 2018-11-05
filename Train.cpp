@@ -1,5 +1,8 @@
 #include "Train.h"
 
-Train::Train(int _c, double _v, double _e)
+Train::Train()
 : Moyen(1000, 250, 1.5)
+{}
+
+Train::~Train()
 {}

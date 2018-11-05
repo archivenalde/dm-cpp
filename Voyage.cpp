@@ -1,10 +1,10 @@
 #include "Voyage.h"
 
-Voyage::Voyage(Terminal* _o, Terminal* _d)
-: origine(_o), destination(_d)
+Voyage::Voyage(Terminal* _origine, Terminal* _destination)
+: origine(_origine), destination(_destination)
 {}
 
-void Voyage::addCorrespondance(Ligne* _corr)
+void Voyage::addCorrespondance(Ligne* _correspondance)
 {
-    correspondances.push_back(_corr);
+    correspondances.push_back(_correspondance);
 }

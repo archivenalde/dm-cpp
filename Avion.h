@@ -6,7 +6,8 @@
 class Avion: public Moyen
 {
 public:
-    Avion(int, double, double);
+    Avion();
+    ~Avion();
 };
 
 #endif

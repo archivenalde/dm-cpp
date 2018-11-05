@@ -3,7 +3,7 @@
 
 class Terminal;
 
-template<typename T>
+template<class T>
 class Ligne
 {
     T moyen;
@@ -12,21 +12,8 @@ class Ligne
     double frequence; // Nombre de passagers par jour
 
 public:
-    Ligne(T _m, Terminal* _o, Terminal* _d, double _f);
+    Ligne(Terminal*, Terminal*, double);
+    ~Ligne();
 };
-
-//Specialisation de la classe Ligne
-
-/*template<>
-class Ligne<Moyen>
-{
-    Moyen moyen;
-    Terminal* origine;
-    Terminal* destination;
-    double frequence; // Nombre de passagers par jour
-
-public:
-    Ligne(Moyen _m, Terminal* _o, Terminal* _d, double _f);
-};*/
 
 #endif

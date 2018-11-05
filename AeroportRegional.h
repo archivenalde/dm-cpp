@@ -3,10 +3,13 @@
 
 #include "Terminal.h"
 
-class AeroportRegional : public Terminal
+class AeroportRegional : virtual public Terminal
 {
+protected:
+    AeroportRegional();
 public:
-    AeroportRegional(double _latitude, double _longitude);
+    AeroportRegional(double, double);
+    ~AeroportRegional();
 };
 
 #endif

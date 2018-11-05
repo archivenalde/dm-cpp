@@ -15,8 +15,8 @@ class Voyage {
 public:
     Voyage(Terminal*, Terminal*);
 
-    void addCorrespondance(Ligne* _corr);
-    int tempsTrajetTotal(int flux);
-    int empreinteTotal(int flux);
+    void addCorrespondance(Ligne*);
+    double tempsTrajetTotal(int);
+    double empreinteTotal(int);
 };
 #endif

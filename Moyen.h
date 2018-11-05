@@ -8,10 +8,12 @@ class Moyen {
 
 public:
     Moyen(int, double, double);
+
     int getCapacite() const;
     double getVitesse() const;
     double getEmpreinte() const;
 
+    ~Moyen();
 };
 
 #endif

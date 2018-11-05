@@ -6,7 +6,8 @@
 class Train: public Moyen
 {
 public:
-    Train(int, double, double);
+    Train();
+    ~Train();
 };
 
 #endif

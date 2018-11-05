@@ -1,6 +1,15 @@
+#include "Moyen.h"
 #include "Ligne.h"
 
-template<typename T>
-Ligne<T>::Ligne(T _m, Terminal* _o, Terminal* _d, double _f)
-: moyen(_m), origine(_o), destination(_d), frequence(_f)
+template<class T>
+Ligne<T>::Ligne(Terminal* _origine, Terminal* _destination, double _frequence)
+: moyen(), origine(_origine), destination(_destination), frequence(_frequence)
+{}
+
+template<class T>
+Ligne<T>::~Ligne()
+{}
+
+template<>
+Ligne<Moyen>::~Ligne()
 {}

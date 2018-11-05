@@ -1,5 +1,8 @@
 #include "AvionElectrique.h"
 
-AvionElectrique::AvionElectrique(int _c, double _v, double _e)
+AvionElectrique::AvionElectrique()
 : Moyen(100, 250, 6)
+{}
+
+AvionElectrique::~AvionElectrique()
 {}
