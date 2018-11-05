@@ -12,5 +12,6 @@ public:
     double getVitesse() const;
     double getEmpreinte() const;
 
-}
+};
+
 #endif

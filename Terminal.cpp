@@ -12,17 +12,17 @@ const Coordonnees& Terminal::getPosition() const
     return position;
 }
 
-const std::map<const Coordonnees&, Ligne<Moyen>>& Terminal::getLiaisons() const
+const std::map<const Coordonnees, Ligne<Moyen>>& Terminal::getLiaisons() const
 {
     return liaisons;
 }
 
-const std::map<std::pair<const Coordonnees&, const Coordonnees&>, int>& Terminal::getTempsMoyen() const
+const std::map<std::pair<const Coordonnees, const Coordonnees>, int>& Terminal::getTempsMoyen() const
 {
     return tps_moyen;
 }
 
-const std::map<const Coordonnees&, int>& Terminal::getFlux() const
+const std::map<const Coordonnees, int>& Terminal::getFlux() const
 {
     return flux;
 }

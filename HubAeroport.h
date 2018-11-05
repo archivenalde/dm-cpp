@@ -5,7 +5,8 @@
 
 class HubAeroport : public Terminal
 {
-
+public:
+    HubAeroport(double _latitude, double _longitude);
 };
 
 #endif

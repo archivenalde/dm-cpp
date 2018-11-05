@@ -5,7 +5,8 @@
 
 class AeroportInternational : public Terminal
 {
-
+public:
+    AeroportInternational(double _latitude, double _longitude);
 };
 
 #endif

@@ -5,7 +5,8 @@
 
 class Gare : public Terminal
 {
-
-}
+public:
+    Gare(double _latitude, double _longitude);
+};
 
 #endif

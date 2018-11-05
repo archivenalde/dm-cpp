@@ -5,7 +5,8 @@
 
 class AeroportRegional : public Terminal
 {
-
-}
+public:
+    AeroportRegional(double _latitude, double _longitude);
+};
 
 #endif

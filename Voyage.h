@@ -3,6 +3,9 @@
 
 #include <list>
 
+class Terminal;
+class Ligne;
+
 class Voyage {
     Terminal* origine;
     Terminal* destination;
@@ -10,6 +13,9 @@ class Voyage {
 
     std::list<Ligne*> correspondances;
 public:
+    Voyage(Terminal*, Terminal*);
+
+    void addCorrespondance(Ligne* _corr);
     int tempsTrajetTotal(int flux);
     int empreinteTotal(int flux);
 };
