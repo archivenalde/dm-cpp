@@ -27,7 +27,7 @@ const std::list<Ligne<Moyen>>& Terminal::getLiaisons() const
 
 const std::map<std::pair<const Coordonnees, const Coordonnees>, int>& Terminal::getTempsMoyen() const
 {
-    return tps_moyen;
+    return tempsMoyen;
 }
 
 const std::map<const Coordonnees, int>& Terminal::getFlux() const

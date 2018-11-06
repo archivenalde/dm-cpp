@@ -15,7 +15,7 @@ class Terminal
 {
     const Coordonnees position;
     std::list<Ligne<Moyen>> liaisons;
-    std::map<std::pair<const Coordonnees, const Coordonnees>, int> tps_moyen;
+    std::map<std::pair<const Coordonnees, const Coordonnees>, int> tempsMoyen;
     std::map<const Coordonnees, int> flux;
 
 protected:

@@ -21,19 +21,19 @@ const Moyen& Ligne<Moyen>::getMoyen() const
 }
 
 template<>
-const Terminal& Ligne<Moyen>::getOrigine() const
+Terminal* Ligne<Moyen>::getOrigine() const
 {
-    return *origine;
+    return origine;
 }
 
 template<>
-const Terminal& Ligne<Moyen>::getDestination() const
+Terminal* Ligne<Moyen>::getDestination() const
 {
-    return *destination;
+    return destination;
 }
 
-template<class T>
-int Ligne<T>::getFrequence() const
+template<>
+int Ligne<Moyen>::getFrequence() const
 {
     return frequence;
 }

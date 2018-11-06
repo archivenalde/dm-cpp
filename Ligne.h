@@ -15,8 +15,8 @@ public:
     Ligne(Terminal*, Terminal*, double);
 
     const T& getMoyen() const;
-    const Terminal& getOrigine() const;
-    const Terminal& getDestination() const;
+    Terminal* getOrigine() const;
+    Terminal* getDestination() const;
     int getFrequence() const;
 
     ~Ligne();
