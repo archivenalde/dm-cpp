@@ -9,10 +9,16 @@ class Ligne
     T moyen;
     Terminal* origine;
     Terminal* destination;
-    double frequence; // Nombre de passagers par jour
+    int frequence; // Nombre de passagers par jour
 
 public:
     Ligne(Terminal*, Terminal*, double);
+
+    const T& getMoyen() const;
+    const Terminal& getOrigine() const;
+    const Terminal& getDestination() const;
+    int getFrequence() const;
+
     ~Ligne();
 };
 

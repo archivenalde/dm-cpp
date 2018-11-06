@@ -30,6 +30,8 @@ public:
     const std::map<const Coordonnees, int>& getFlux() const;
 
     double distance(const Coordonnees&) const;
+
+    ~Terminal();
 };
 
 #endif

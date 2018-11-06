@@ -1,19 +1,21 @@
 #ifndef MOYEN_H
 #define MOYEN_H
 
-class Moyen {
+class Moyen
+{
     const int capacite;
     const double vitesse;
     const double empreinte;
 
-public:
+protected:
     Moyen(int, double, double);
 
+public:
     int getCapacite() const;
     double getVitesse() const;
     double getEmpreinte() const;
 
-    ~Moyen();
+    virtual ~Moyen();
 };
 
 #endif

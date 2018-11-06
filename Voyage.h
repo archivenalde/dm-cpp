@@ -3,20 +3,25 @@
 
 #include <list>
 
-class Terminal;
-class Ligne;
+#include "Ligne.h"
+#include "Moyen.h"
 
-class Voyage {
+class Terminal;
+
+class Voyage
+{
     Terminal* origine;
     Terminal* destination;
-    int flux;
 
-    std::list<Ligne*> correspondances;
+    std::list<Ligne<Moyen>*> lignes;
+
 public:
     Voyage(Terminal*, Terminal*);
 
-    void addCorrespondance(Ligne*);
+    void ajoutLigne(Ligne<Moyen>*);
     double tempsTrajetTotal(int);
-    double empreinteTotal(int);
+    double empreinteTotale(int);
+
+    ~Voyage();
 };
 #endif

@@ -12,6 +12,8 @@ Terminal::Terminal(double _latitude, double _longitude)
 : position(_latitude, _longitude)
 {}
 
+Terminal::~Terminal()
+{}
 
 const Coordonnees& Terminal::getPosition() const
 {
