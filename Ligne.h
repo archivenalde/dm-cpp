@@ -20,6 +20,14 @@ public:
     int getFrequence() const;
 
     ~Ligne();
+
+    friend bool operator==(const Ligne<T>& l1, const Ligne<T>& l2)
+    {
+        return l1.getMoyen() == l2.getMoyen() && l1.getOrigine() == l2.getOrigine() && l1.getDestination() == l2.getDestination() && l1.getFrequence() == l2.getFrequence();
+    }
 };
+
+#include "Ligne.tpp"
+
 
 #endif

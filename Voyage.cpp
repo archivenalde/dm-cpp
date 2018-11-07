@@ -30,7 +30,7 @@ double Voyage::tempsTrajetTotal(int flux)
 	{
         origine = (*it)->getOrigine();
         suivant = (*it)->getDestination();
-        nbVoyages = std::ceil((double)flux/(*it)->getMoyen().getCapacite());
+        nbVoyages = std::ceil((double)flux/((*it)->getMoyen().getCapacite()));
         distance = origine->distance(destination->getPosition());
         vitesse = (*it)->getMoyen().getVitesse();
 
@@ -42,8 +42,8 @@ double Voyage::tempsTrajetTotal(int flux)
             destination = (*next)->getDestination();
 
             /* TODO: recuperation du temps d'attente */
-
-            tempsTotal += tempsAttente;
+            tempsAttente = suivant->getTempsMoyen(origine->getPosition(), destination->getPosition());
+            tempsTotal += nbVoyages * tempsAttente;
         }
     }
 
@@ -61,6 +61,7 @@ double Voyage::empreinteTotale(int flux)
 	{
         origine = (*it)->getOrigine();
         destination = (*it)->getDestination();
+        // ceil : entier superieur. Recupere le nombre de moyens differents pour transporter tous les passagers
         nbVoyages = std::ceil((double)flux/(*it)->getMoyen().getCapacite());
         distance = origine->distance(destination->getPosition());
         empreinte = (*it)->getMoyen().getEmpreinte();

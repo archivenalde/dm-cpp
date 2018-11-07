@@ -16,6 +16,12 @@ public:
     double getEmpreinte() const;
 
     virtual ~Moyen();
+
+    friend bool operator==(const Moyen& m1, const Moyen& m2)
+    {
+        return m1.capacite == m2.capacite && m1.vitesse == m2.vitesse && m1.empreinte == m2.empreinte;
+    }
+
 };
 
 #endif

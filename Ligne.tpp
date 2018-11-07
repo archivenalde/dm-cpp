@@ -10,30 +10,26 @@ template<class T>
 Ligne<T>::~Ligne()
 {}
 
-template<>
-Ligne<Moyen>::~Ligne()
-{}
-
-template<>
-const Moyen& Ligne<Moyen>::getMoyen() const
+template<class T>
+const T& Ligne<T>::getMoyen() const
 {
     return moyen;
 }
 
-template<>
-Terminal* Ligne<Moyen>::getOrigine() const
+template<class T>
+Terminal* Ligne<T>::getOrigine() const
 {
     return origine;
 }
 
-template<>
-Terminal* Ligne<Moyen>::getDestination() const
+template<class T>
+Terminal* Ligne<T>::getDestination() const
 {
     return destination;
 }
 
-template<>
-int Ligne<Moyen>::getFrequence() const
+template<class T>
+int Ligne<T>::getFrequence() const
 {
     return frequence;
 }
