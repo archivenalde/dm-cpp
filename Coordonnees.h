@@ -15,6 +15,10 @@ public:
     ~Coordonnees();
 };
 
-inline bool operator<(const Coordonnees&, const Coordonnees&);
+inline bool operator<(const Coordonnees& c1, const Coordonnees& c2)
+{
+  if (c1.getLatitude() != c2.getLatitude()) return c1.getLatitude() < c2.getLatitude();
+  else return c1.getLongitude() < c2.getLongitude();
+}
 
 #endif

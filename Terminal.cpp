@@ -33,8 +33,7 @@ const std::map<std::pair<const Coordonnees, const Coordonnees>, int>& Terminal::
 int Terminal::getTempsMoyen(const Coordonnees& c1, const Coordonnees& c2) const
 {
     std::pair<const Coordonnees, const Coordonnees> coordPair = std::make_pair(c1, c2);
-    //return tempsMoyen[coordPair];
-    return 1;
+    return tempsMoyen.find(coordPair)->second;
 }
 
 const std::map<const Coordonnees, int>& Terminal::getFlux() const
