@@ -11,25 +11,25 @@ Ligne<T>::~Ligne()
 {}
 
 template<class T>
-const T& Ligne<T>::getMoyen() const
+const T& Ligne<T>::do_getMoyen() const
 {
     return moyen;
 }
 
 template<class T>
-Terminal* Ligne<T>::getOrigine() const
+Terminal* Ligne<T>::do_getOrigine() const
 {
     return origine;
 }
 
 template<class T>
-Terminal* Ligne<T>::getDestination() const
+Terminal* Ligne<T>::do_getDestination() const
 {
     return destination;
 }
 
 template<class T>
-int Ligne<T>::getFrequence() const
+int Ligne<T>::do_getFrequence() const
 {
     return frequence;
 }
