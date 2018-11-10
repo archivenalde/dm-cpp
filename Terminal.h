@@ -14,7 +14,10 @@
 class Terminal
 {
     const Coordonnees position;
-    std::list<Ligne<Moyen>*> liaisons;
+    template <class T>
+
+
+    //std::list<Ligne<>*> liaisons;
     std::map<std::pair<const Coordonnees, const Coordonnees>, int> tempsMoyen;
     std::map<const Coordonnees, int> flux;
 
@@ -24,13 +27,36 @@ protected:
 public:
     Terminal(double, double);
 
+
+    class Liaison
+    {
+    private:
+      Moyen m;
+      std::list<Ligne<Moyen>*> liaisons;
+
+    public:
+      Liaison(T _m) : m(_m) {}
+
+      const std::list<Ligne<Moyen>*>& getLiaisons() const
+      {
+        return liaisons;
+      }
+
+      void ajoutLiaison(Ligne<Moyen>* l)
+      {
+        if (l->getDestination() == this)
+            liaisons.push_back(l);
+      }
+      //void retirerLiaison(Ligne<Moyen>*);
+    }
+
+
+
     const Coordonnees& getPosition() const;
-    const std::list<Ligne<Moyen>*>& getLiaisons() const;
     const std::map<std::pair<const Coordonnees, const Coordonnees>, int>& getTempsMoyen() const;
     int getTempsMoyen(const Coordonnees&, const Coordonnees&) const;
     const std::map<const Coordonnees, int>& getFlux() const;
-    void ajoutLiaison(Ligne<Moyen>*);
-    void retirerLiaison(Ligne<Moyen>*);
+
 
     double distance(const Coordonnees&) const;
 

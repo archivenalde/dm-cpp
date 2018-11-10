@@ -20,10 +20,6 @@ const Coordonnees& Terminal::getPosition() const
     return position;
 }
 
-const std::list<Ligne<Moyen>*>& Terminal::getLiaisons() const
-{
-    return liaisons;
-}
 
 const std::map<std::pair<const Coordonnees, const Coordonnees>, int>& Terminal::getTempsMoyen() const
 {
@@ -41,11 +37,11 @@ const std::map<const Coordonnees, int>& Terminal::getFlux() const
     return flux;
 }
 
-void Terminal::ajoutLiaison(Ligne<Moyen>* l)
+/*void Terminal::ajoutLiaison(Ligne<Moyen>* l)
 {
     if (l->getDestination() == this)
         liaisons.push_back(l);
-}
+}*/
 
 
 double Terminal::distance(const Coordonnees& pos) const

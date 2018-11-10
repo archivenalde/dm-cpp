@@ -3,7 +3,7 @@
 
 #include "Moyen.h"
 
-class Avion: public Moyen
+class Avion: virtual public Moyen
 {
 public:
     Avion();

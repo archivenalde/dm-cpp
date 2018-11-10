@@ -3,7 +3,7 @@
 
 #include "Moyen.h"
 
-class AvionElectrique : public Moyen
+class AvionElectrique : virtual public Moyen
 {
 public:
     AvionElectrique();
