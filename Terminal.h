@@ -12,6 +12,8 @@
 
 #define RT 6378
 
+enum Moyen_e {TRAIN, AVION_ELECTRIQUE, AVION};
+
 class Terminal
 {
     const Coordonnees position;
@@ -30,7 +32,8 @@ public:
     const std::map<std::pair<const Coordonnees, const Coordonnees>, int>& getTempsMoyen() const;
     int getTempsMoyen(const Coordonnees&, const Coordonnees&) const;
     const std::map<const Coordonnees, int>& getFlux() const;
-    void ajoutLiaison(AbstractLigne*);
+    void ajoutLiaison1sens(Terminal* _dest, int _frequence, Moyen_e _m);
+    void ajoutLiaison2sens(Terminal* _dest, int _frequence, Moyen_e _m);
     void retirerLiaison(AbstractLigne*);
 
     double distance(const Coordonnees&) const;

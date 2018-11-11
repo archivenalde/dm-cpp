@@ -1,9 +1,11 @@
 #include <iostream>
 
+#include "Terminal.h"
 #include "HubAeroport.h"
 #include "AeroportInternational.h"
 #include "AeroportRegional.h"
 #include "Avion.h"
+#include "Train.h"
 
 /*
             Latitude       Longitude
@@ -25,18 +27,33 @@ Naples      40.851         14.268
 #define NAPLES_LAT 40.851
 #define NAPLES_LON 14.268
 
+#define BRUXELLES 0
+#define PARIS 1
+#define LYON 2
+#define ROME 3
+#define NAPLES 4
+
 
 int main(int argc, char const *argv[]) {
 
-    HubAeroport paris(PARIS_LAT, PARIS_LON);
-    AeroportInternational rome(ROME_LAT, ROME_LON);
-    AeroportRegional lyon(LYON_LAT, LYON_LON);
-    AeroportRegional bruxelles(BRUXELLES_LAT, BRUXELLES_LON);
-    AeroportRegional naples(NAPLES_LAT, NAPLES_LON);
+    Terminal terminaux[5] = {AeroportRegional(BRUXELLES_LAT, BRUXELLES_LON),
+                             HubAeroport(PARIS_LAT, PARIS_LON),
+                             AeroportRegional(LYON_LAT, LYON_LON),
+                             AeroportInternational(ROME_LAT, ROME_LON),
+                             AeroportRegional(NAPLES_LAT, NAPLES_LON)};
 
-    Moyen a = Avion();
-    paris.ajoutLiaison(new Ligne<Avion>(&paris, &rome, 2) );
-    std::cout << paris.getLiaisons().front()->getMoyen().getCapacite() << std::endl;
+
+    int flux[5][5] = {{-1, 13000, 5500, 4500, 2000},
+                      {12500, -1, 18000, 10000, 4000},
+                      {6000, 19000, -1, 6500, 2500},
+                      {5000, 9000, 6000, -1, 11000},
+                      {2500, 5000, 3000, 10000, -1}};
+
+    terminaux[PARIS].ajoutLiaison2sens(&terminaux[ROME], 2, AVION);
+    terminaux[LYON].ajoutLiaison2sens(&terminaux[PARIS], 2, AVION);
+    terminaux[BRUXELLES].ajoutLiaison2sens(&terminaux[PARIS], 2, AVION);
+    terminaux[NAPLES].ajoutLiaison2sens(&terminaux[PARIS], 2, AVION);
+
 
     return 0;
 }
