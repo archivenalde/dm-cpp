@@ -4,9 +4,11 @@ AeroportRegional::AeroportRegional()
 : Terminal()
 {}
 
-AeroportRegional::AeroportRegional(double _latitude, double _longitude)
-: Terminal(_latitude, _longitude)
-{}
+AeroportRegional::AeroportRegional(std::string _nom, double _latitude, double _longitude)
+: Terminal(_nom, _latitude, _longitude)
+{
+    std::cout << "Construction de l'aeroport regional de " << _nom << " terminée" << std::endl;
+}
 
 AeroportRegional::~AeroportRegional()
 {}

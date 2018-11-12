@@ -8,7 +8,7 @@ class AeroportRegional : virtual public Terminal
 protected:
     AeroportRegional();
 public:
-    AeroportRegional(double, double);
+    AeroportRegional(std::string, double, double);
     ~AeroportRegional();
 };
 

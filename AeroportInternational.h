@@ -8,7 +8,7 @@ class AeroportInternational : virtual public Terminal
 protected:
     AeroportInternational();
 public:
-    AeroportInternational(double, double);
+    AeroportInternational(std::string, double, double);
     ~AeroportInternational();
 };
 

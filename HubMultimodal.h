@@ -9,7 +9,7 @@ class HubMultimodal : public HubAeroport, public Gare
 protected:
     HubMultimodal();
 public:
-    HubMultimodal(double, double);
+    HubMultimodal(std::string, double, double);
     ~HubMultimodal();
 };
 

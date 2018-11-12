@@ -14,8 +14,8 @@ Terminal::Terminal()
 : position(0.0, 0.0)
 {}
 
-Terminal::Terminal(double _latitude, double _longitude)
-: position(_latitude, _longitude)
+Terminal::Terminal(std::string _nom, double _latitude, double _longitude)
+: nom(_nom), position(_latitude, _longitude)
 {}
 
 Terminal::~Terminal()

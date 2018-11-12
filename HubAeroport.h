@@ -8,7 +8,7 @@ class HubAeroport : virtual public Terminal
 protected:
     HubAeroport();
 public:
-    HubAeroport(double, double);
+    HubAeroport(std::string, double, double);
     ~HubAeroport();
 };
 

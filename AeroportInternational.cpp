@@ -4,9 +4,11 @@ AeroportInternational::AeroportInternational()
 : Terminal()
 {}
 
-AeroportInternational::AeroportInternational(double _latitude, double _longitude)
-: Terminal(_latitude, _longitude)
-{}
+AeroportInternational::AeroportInternational(std::string _nom, double _latitude, double _longitude)
+: Terminal(_nom, _latitude, _longitude)
+{
+    std::cout << "Construction de l'aeroport international de " << _nom << " terminée" << std::endl;
+}
 
 AeroportInternational::~AeroportInternational()
 {}
