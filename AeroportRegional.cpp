@@ -1,3 +1,4 @@
+#include <iostream>
 #include "AeroportRegional.h"
 
 AeroportRegional::AeroportRegional()
@@ -7,7 +8,7 @@ AeroportRegional::AeroportRegional()
 AeroportRegional::AeroportRegional(std::string _nom, double _latitude, double _longitude)
 : Terminal(_nom, _latitude, _longitude)
 {
-    std::cout << "Construction de l'aeroport regional de " << _nom << " terminée" << std::endl;
+    std::cout << "Construction de l'aeroport régional de " << _nom << " terminée" << std::endl;
 }
 
 AeroportRegional::~AeroportRegional()

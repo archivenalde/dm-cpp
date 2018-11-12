@@ -21,6 +21,11 @@ Terminal::Terminal(std::string _nom, double _latitude, double _longitude)
 Terminal::~Terminal()
 {}
 
+const std::string& Terminal::getNom() const
+{
+    return nom;
+}
+
 const Coordonnees& Terminal::getPosition() const
 {
     return position;

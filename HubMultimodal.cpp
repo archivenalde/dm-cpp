@@ -1,3 +1,4 @@
+#include <iostream>
 #include "HubMultimodal.h"
 
 HubMultimodal::HubMultimodal()

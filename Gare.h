@@ -8,7 +8,7 @@ class Gare : virtual public Terminal
 protected:
     Gare();
 public:
-    Gare(double, double);
+    Gare(std::string, double, double);
     ~Gare();
 };
 

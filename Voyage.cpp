@@ -1,3 +1,4 @@
+#include <iostream>
 #include <cmath>
 #include <list>
 #include <iterator>
@@ -8,7 +9,9 @@
 
 Voyage::Voyage(Terminal* _origine, Terminal* _destination)
 : origine(_origine), destination(_destination)
-{}
+{
+    std::cout << "Voyage entre " << origine->getNom() << " et " << destination->getNom() << " programmé"<< std::endl;
+}
 
 Voyage::~Voyage()
 {}

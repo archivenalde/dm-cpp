@@ -6,6 +6,7 @@
 #include "AeroportRegional.h"
 #include "Avion.h"
 #include "Train.h"
+#include "Voyage.h"
 
 /*
             Latitude       Longitude
@@ -36,11 +37,11 @@ Naples      40.851         14.268
 
 int main(int argc, char const *argv[]) {
 
-    Terminal terminaux[5] = {AeroportRegional(BRUXELLES_LAT, BRUXELLES_LON),
-                             HubAeroport(PARIS_LAT, PARIS_LON),
-                             AeroportRegional(LYON_LAT, LYON_LON),
-                             AeroportInternational(ROME_LAT, ROME_LON),
-                             AeroportRegional(NAPLES_LAT, NAPLES_LON)};
+    Terminal terminaux[5] = {AeroportRegional("Bruxelles", BRUXELLES_LAT, BRUXELLES_LON),
+                             HubAeroport("Paris", PARIS_LAT, PARIS_LON),
+                             AeroportRegional("Lyon", LYON_LAT, LYON_LON),
+                             AeroportInternational("Rome", ROME_LAT, ROME_LON),
+                             AeroportRegional("Naples", NAPLES_LAT, NAPLES_LON)};
 
 
     int flux[5][5] = {{-1, 13000, 5500, 4500, 2000},
@@ -53,6 +54,8 @@ int main(int argc, char const *argv[]) {
     terminaux[LYON].ajoutLiaison2sens(&terminaux[PARIS], 2, AVION);
     terminaux[BRUXELLES].ajoutLiaison2sens(&terminaux[PARIS], 2, AVION);
     terminaux[NAPLES].ajoutLiaison2sens(&terminaux[PARIS], 2, AVION);
+
+    Voyage voyage(&terminaux[PARIS], &terminaux[LYON]);
 
 
     return 0;

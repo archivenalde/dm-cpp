@@ -28,6 +28,7 @@ protected:
 public:
     Terminal(std::string, double, double);
 
+    const std::string& getNom() const;
     const Coordonnees& getPosition() const;
     const std::list<AbstractLigne*>& getLiaisons() const;
     const std::map<std::pair<const Coordonnees, const Coordonnees>, int>& getTempsMoyen() const;
