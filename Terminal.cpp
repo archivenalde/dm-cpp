@@ -9,6 +9,8 @@
 #include "Avion.h"
 #include "AvionElectrique.h"
 
+int Terminal::NBTERMINAUX = 0;
+
 
 Terminal::Terminal()
 : position(0.0, 0.0), indice(NBTERMINAUX)
@@ -17,8 +19,10 @@ Terminal::Terminal()
 }
 
 Terminal::Terminal(std::string _nom, double _latitude, double _longitude)
-: Terminal(), nom(_nom), position(_latitude, _longitude)
-{}
+: nom(_nom), position(_latitude, _longitude), indice(NBTERMINAUX)
+{
+    NBTERMINAUX++;
+}
 
 Terminal::~Terminal()
 {}
@@ -84,13 +88,13 @@ void Terminal::ajoutLiaison2sens(Terminal* _dest, int _frequence, Moyen_e _m)
     _dest->ajoutLiaison1sens(this, _frequence, _m);
 }
 
-bool Terminal::estAccessible(const Coordonnees& _c)
+bool Terminal::estAccessible(const Terminal& _t)
 {
     std::list<AbstractLigne*>::iterator it;
 
     for (it = liaisons.begin(); it != liaisons.end(); ++it)
     {
-        if ((*it)->getDestination()->position == _c)
+        if ((*it)->getDestination()->position == _t.position)
             return true;
     }
 
@@ -106,4 +110,14 @@ double Terminal::distance(const Coordonnees& _pos) const
     horizontale = d * (_pos.getLongitude() - position.getLongitude());
 
     return sqrt(pow(verticale, 2) + pow(horizontale, 2));
+}
+
+int Terminal::getNBTERMINAUX()
+{
+    return NBTERMINAUX;
+}
+
+int Terminal::getIndice() const
+{
+    return indice;
 }

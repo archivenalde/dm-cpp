@@ -17,6 +17,7 @@ enum Moyen_e {TRAIN, AVION_ELECTRIQUE, AVION};
 class Terminal
 {
     static int NBTERMINAUX;
+
     std::string nom;
     const Coordonnees position;
     std::list<AbstractLigne*> liaisons;
@@ -41,11 +42,12 @@ public:
     void ajoutLiaison2sens(Terminal* _dest, int _frequence, Moyen_e _m);
     void retirerLiaison(AbstractLigne*);
 
-    bool estAccessible(const Coordonnees&);
+    bool estAccessible(const Terminal&);
 
     double distance(const Coordonnees&) const;
 
-    int get
+    static int getNBTERMINAUX();
+    int getIndice() const;
 
     ~Terminal();
 };

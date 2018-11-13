@@ -3,7 +3,7 @@
 
 #include <list>
 
-#include "Ligne.h"
+#include "AbstractLigne.h"
 #include "Moyen.h"
 
 class Terminal;
@@ -13,14 +13,14 @@ class Voyage
     Terminal* origine;
     Terminal* destination;
 
-    std::list<Ligne<Moyen>*> lignes;
+    std::list<AbstractLigne*> lignes;
 
 public:
     Voyage(Terminal*, Terminal*);
 
-    void determinerCorrespondances(Terminal* terminauxAccessibles, int tailleTableau);
+    void determinerCorrespondances(Terminal* terminauxAccessibles);
 
-    void ajoutLigne(Ligne<Moyen>*);
+    void ajoutLigne(AbstractLigne*);
     double tempsTrajetTotal(int);
     double empreinteTotale(int);
 

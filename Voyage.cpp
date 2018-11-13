@@ -7,6 +7,44 @@
 #include "Terminal.h"
 #include "Ligne.h"
 
+
+bool estPlusPetit(int a, int b)
+{
+    if (a < 0 && b >= 0)
+        return false;
+    else if (a >= 0 && b < 0)
+        return true;
+    else return a < b;
+
+}
+
+int trouve_min(int* _distances, const std::list<int>& _Q)
+{
+    int dmin = -1;
+    int sommet = -2;
+
+    for (auto s: _Q)
+    {
+        if (estPlusPetit(_distances[s], dmin))
+        {
+            dmin = _distances[s];
+            sommet = s;
+        }
+    }
+
+    return sommet;
+}
+
+void maj_distances(int* _pred, int* _dist, int sdeb, int sfin)
+{
+    if (estPlusPetit(_dist[sdeb] + 1, _dist[sfin])) // Peut_être remplacer + 1 par + distance de Terminal...
+    {
+        _dist[sfin] = _dist[sdeb] + 1;
+        _pred[sfin] = sdeb;
+    }
+}
+
+
 Voyage::Voyage(Terminal* _origine, Terminal* _destination)
 : origine(_origine), destination(_destination)
 {
@@ -16,7 +54,7 @@ Voyage::Voyage(Terminal* _origine, Terminal* _destination)
 Voyage::~Voyage()
 {}
 
-void Voyage::ajoutLigne(Ligne<Moyen>* ligne)
+void Voyage::ajoutLigne(AbstractLigne* ligne)
 {
     lignes.push_back(ligne);
 }
@@ -25,7 +63,66 @@ void Voyage::determinerCorrespondances(Terminal* _noeuds)
 {
     Terminal deb = *origine;
     Terminal fin = *destination;
-    int nb = _noeuds[0]
+    int nb = Terminal::getNBTERMINAUX();
+
+    int d[5];
+    int predecesseur[5];
+    /*int *d = new int[nb];
+    int *predecesseur = new int[nb];*/
+
+    std::list<int> Q; //Ensemble des noeuds, i est leur indice
+
+    //Initialisation
+    for (int i = 0; i < nb; ++i)
+    {
+        d[i] = -1;
+        predecesseur[i] = -1;
+        Q.push_back(i);
+    }
+    d[deb.getIndice()] = 0;
+
+    while(!Q.empty())
+    {
+        int smin = trouve_min(d, Q);
+        Q.remove_if([smin](int n){ return n == smin; });
+
+        for (int q: Q)
+        {
+            if (_noeuds[smin].estAccessible(_noeuds[q]))
+                maj_distances(predecesseur, d, smin, q);
+        }
+    }
+
+    std::list<int> A;
+
+    int s = fin.getIndice();
+    while (s != deb.getIndice())
+    {
+        A.push_back(s);
+        s = predecesseur[s];
+    }
+    A.reverse();
+
+    int nor = deb.getIndice();
+    while (! A.empty())
+    {
+        int next = _noeuds[nor].getIndice();
+        if (A.size() > 0)
+        {
+            for (auto l : _noeuds[next].getLiaisons())
+            {
+                if (l->getDestination()->getIndice() == A.front())
+                    lignes.push_back(l);
+            }
+        }
+        nor = A.front();
+        A.pop_front();
+    }
+
+    for (auto c : lignes)
+    {
+        std::cout << c->getOrigine()->getNom() << " -> " << c->getDestination()->getNom() << std::endl;
+    }
 }
 
 double Voyage::tempsTrajetTotal(int flux)
@@ -34,9 +131,9 @@ double Voyage::tempsTrajetTotal(int flux)
     double distance = 0, vitesse = 0, tempsAttente = 0;
     int nbVoyages = 0;
     Terminal* origine,* suivant,* destination;
-    std::list<Ligne<Moyen>*>::iterator next;
+    std::list<AbstractLigne*>::iterator next;
 
-    for (std::list<Ligne<Moyen>*>::iterator it = lignes.begin(); it != lignes.end(); it++)
+    for (std::list<AbstractLigne*>::iterator it = lignes.begin(); it != lignes.end(); it++)
 	{
         origine = (*it)->getOrigine();
         suivant = (*it)->getDestination();
@@ -67,7 +164,7 @@ double Voyage::empreinteTotale(int flux)
     int nbVoyages = 0;
     Terminal* origine,* destination;
 
-    for (std::list<Ligne<Moyen>*>::iterator it = lignes.begin(); it != lignes.end(); it++)
+    for (std::list<AbstractLigne*>::iterator it = lignes.begin(); it != lignes.end(); it++)
 	{
         origine = (*it)->getOrigine();
         destination = (*it)->getDestination();

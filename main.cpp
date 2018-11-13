@@ -53,9 +53,9 @@ int main(int argc, char const *argv[]) {
     terminaux[PARIS].ajoutLiaison2sens(&terminaux[ROME], 2, AVION);
     terminaux[LYON].ajoutLiaison2sens(&terminaux[PARIS], 2, AVION);
     terminaux[BRUXELLES].ajoutLiaison2sens(&terminaux[PARIS], 2, AVION);
-    terminaux[NAPLES].ajoutLiaison2sens(&terminaux[PARIS], 2, AVION);
+    terminaux[NAPLES].ajoutLiaison2sens(&terminaux[ROME], 2, AVION);
 
-    Voyage voyage(&terminaux[PARIS], &terminaux[LYON]);
+    Voyage voyage(&terminaux[LYON], &terminaux[NAPLES]);
 
     voyage.determinerCorrespondances(terminaux);
 
