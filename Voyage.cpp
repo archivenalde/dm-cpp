@@ -25,7 +25,7 @@ void Voyage::determinerCorrespondances(Terminal* _noeuds)
 {
     Terminal deb = *origine;
     Terminal fin = *destination;
-
+    int nb = _noeuds[0]
 }
 
 double Voyage::tempsTrajetTotal(int flux)

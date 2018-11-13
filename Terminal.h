@@ -45,6 +45,8 @@ public:
 
     double distance(const Coordonnees&) const;
 
+    int get
+
     ~Terminal();
 };
 
