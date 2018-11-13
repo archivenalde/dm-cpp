@@ -1,11 +1,11 @@
 CC = g++
-CCFLAGS= -Wall -pedantic -ggdb
+CCFLAGS= -Wall -pedantic -ggdb -g
 EXTC = cpp
 EXTH = h
 EXECUTABLE = main
 
 SRC = $(wildcard *.$(EXTC))
-HDR = $(wildcard *.$(EXTH)) 
+HDR = $(wildcard *.$(EXTH))
 OBJ = $(SRC:.$(EXTC)=.o)
 DEP = $(OBJ:.o=.d)
 

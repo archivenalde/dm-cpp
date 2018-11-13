@@ -16,11 +16,14 @@ enum Moyen_e {TRAIN, AVION_ELECTRIQUE, AVION};
 
 class Terminal
 {
+    static int NBTERMINAUX;
     std::string nom;
     const Coordonnees position;
     std::list<AbstractLigne*> liaisons;
     std::map<std::pair<const Coordonnees, const Coordonnees>, int> tempsMoyen;
     std::map<const Coordonnees, int> flux;
+
+    const int indice;
 
 protected:
     Terminal();
@@ -37,6 +40,8 @@ public:
     virtual void ajoutLiaison1sens(Terminal* _dest, int _frequence, Moyen_e _m);
     void ajoutLiaison2sens(Terminal* _dest, int _frequence, Moyen_e _m);
     void retirerLiaison(AbstractLigne*);
+
+    bool estAccessible(const Coordonnees&);
 
     double distance(const Coordonnees&) const;
 

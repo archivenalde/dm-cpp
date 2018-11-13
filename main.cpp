@@ -57,6 +57,7 @@ int main(int argc, char const *argv[]) {
 
     Voyage voyage(&terminaux[PARIS], &terminaux[LYON]);
 
+    voyage.determinerCorrespondances(terminaux);
 
     return 0;
 }

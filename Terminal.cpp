@@ -11,11 +11,13 @@
 
 
 Terminal::Terminal()
-: position(0.0, 0.0)
-{}
+: position(0.0, 0.0), indice(NBTERMINAUX)
+{
+    NBTERMINAUX++;
+}
 
 Terminal::Terminal(std::string _nom, double _latitude, double _longitude)
-: nom(_nom), position(_latitude, _longitude)
+: Terminal(), nom(_nom), position(_latitude, _longitude)
 {}
 
 Terminal::~Terminal()
@@ -80,6 +82,19 @@ void Terminal::ajoutLiaison2sens(Terminal* _dest, int _frequence, Moyen_e _m)
 {
     ajoutLiaison1sens(_dest, _frequence, _m);
     _dest->ajoutLiaison1sens(this, _frequence, _m);
+}
+
+bool Terminal::estAccessible(const Coordonnees& _c)
+{
+    std::list<AbstractLigne*>::iterator it;
+
+    for (it = liaisons.begin(); it != liaisons.end(); ++it)
+    {
+        if ((*it)->getDestination()->position == _c)
+            return true;
+    }
+
+    return false;
 }
 
 

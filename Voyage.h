@@ -18,6 +18,8 @@ class Voyage
 public:
     Voyage(Terminal*, Terminal*);
 
+    void determinerCorrespondances(Terminal* terminauxAccessibles, int tailleTableau);
+
     void ajoutLigne(Ligne<Moyen>*);
     double tempsTrajetTotal(int);
     double empreinteTotale(int);

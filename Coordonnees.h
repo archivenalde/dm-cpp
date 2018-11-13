@@ -21,4 +21,14 @@ inline bool operator<(const Coordonnees& c1, const Coordonnees& c2)
   else return c1.getLongitude() < c2.getLongitude();
 }
 
+inline bool operator==(const Coordonnees& c1, const Coordonnees& c2)
+{
+    return c1.getLatitude() == c2.getLatitude() && c1.getLongitude() == c2.getLongitude();
+}
+
+inline bool operator!=(const Coordonnees& c1, const Coordonnees& c2)
+{
+    return !(c1.getLatitude() == c2.getLatitude() && c1.getLongitude() == c2.getLongitude());
+}
+
 #endif

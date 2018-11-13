@@ -21,6 +21,13 @@ void Voyage::ajoutLigne(Ligne<Moyen>* ligne)
     lignes.push_back(ligne);
 }
 
+void Voyage::determinerCorrespondances(Terminal* _noeuds)
+{
+    Terminal deb = *origine;
+    Terminal fin = *destination;
+
+}
+
 double Voyage::tempsTrajetTotal(int flux)
 {
     double tempsTotal = 0;
