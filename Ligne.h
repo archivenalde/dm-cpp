@@ -20,9 +20,6 @@ class Ligne : public AbstractLigne
 
 public:
     Ligne(Terminal*, Terminal*, double);
-
-
-
     ~Ligne();
 
 };

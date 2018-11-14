@@ -3,7 +3,7 @@
 
 #include "Terminal.h"
 
-class AeroportRegional : virtual public Terminal
+class AeroportRegional : public Terminal
 {
     static int NB_LIAISONS_MAX;
 public:
