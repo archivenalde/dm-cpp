@@ -127,7 +127,7 @@ void Voyage::determinerCorrespondances(Terminal* _noeuds)
 
 double Voyage::tempsTrajetTotal(int flux)
 {
-    double tempsTotal = 0;
+    /*double tempsTotal = 0;
     double distance = 0, vitesse = 0, tempsAttente = 0;
     int nbVoyages = 0;
     Terminal* origine,* suivant,* destination;
@@ -138,7 +138,7 @@ double Voyage::tempsTrajetTotal(int flux)
         origine = (*it)->getOrigine();
         suivant = (*it)->getDestination();
         nbVoyages = std::ceil((double)flux/((*it)->getMoyen().getCapacite()));
-        distance = origine->distance(destination->getPosition());
+        distance = origine->distance(suivant->getPosition());
         vitesse = (*it)->getMoyen().getVitesse();
 
         tempsTotal += nbVoyages * (distance/vitesse);
@@ -148,10 +148,24 @@ double Voyage::tempsTrajetTotal(int flux)
         {
             destination = (*next)->getDestination();
 
-            /* TODO: recuperation du temps d'attente */
             tempsAttente = suivant->getTempsMoyen(origine->getPosition(), destination->getPosition());
             tempsTotal += nbVoyages * tempsAttente;
         }
+    }
+    */
+
+    double tempsTotal = 0;
+    double distance = 0;
+    Terminal* origine, *suivant;
+
+    for (std::list<AbstractLigne*>::iterator it = lignes.begin(); it != lignes.end(); it++)
+    {
+        origine = (*it)->getOrigine();
+        suivant = (*it)->getDestination();
+        distance = origine->distance(suivant->getPosition());
+        vitesse = (*it)->getMoyen().getVitesse();
+
+        tempsTotal += nbVoyages * (distance/vitesse);
     }
 
     return tempsTotal;

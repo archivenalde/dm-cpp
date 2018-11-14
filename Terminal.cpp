@@ -106,10 +106,13 @@ double Terminal::distance(const Coordonnees& _pos) const
 {
     double horizontale, verticale, d = 2 * M_PI * RT/360.0;
 
-    verticale = d * (_pos.getLatitude() - position.getLatitude());
-    horizontale = d * (_pos.getLongitude() - position.getLongitude());
+    Coordonnees posOrigineRad(position.getLatitude() * M_PI/180, position.getLongitude() * M_PI/180);
+    Coordonnees posArriveRad(_pos.getLatitude() * M_PI/180, _pos.getLongitude() * M_PI/180);
 
-    return sqrt(pow(verticale, 2) + pow(horizontale, 2));
+    verticale = sin((posArriveRad.getLatitude() - posOrigineRad.getLatitude())/2);
+    horizontale = sin((posArriveRad.getLongitude() - posOrigineRad.getLongitude())/2);
+
+    return 2.0 * RT * asin(sqrt(verticale * verticale + cos(posOrigineRad.getLatitude()) * cos(posArriveRad.getLatitude()) * horizontale * horizontale));
 }
 
 int Terminal::getNBTERMINAUX()

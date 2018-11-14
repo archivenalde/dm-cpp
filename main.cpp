@@ -58,6 +58,7 @@ int main(int argc, char const *argv[]) {
     Voyage voyage(&terminaux[LYON], &terminaux[NAPLES]);
 
     voyage.determinerCorrespondances(terminaux);
+    std::cout << voyage.tempsTrajetTotal(2500) << std::endl;
 
     return 0;
 }
