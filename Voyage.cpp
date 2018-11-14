@@ -203,3 +203,14 @@ double Voyage::empreinteTotale(int flux)
 
     return empreinteTotale;
 }
+
+Terminal* Voyage::getOrigine() const
+{
+    return origine;
+}
+
+
+Terminal* Voyage::getDestination() const
+{
+    return destination;
+}

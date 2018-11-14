@@ -24,6 +24,9 @@ public:
     double tempsTrajet();
     double empreinteTotale(int);
 
+    Terminal* getOrigine() const;
+    Terminal* getDestination() const;
+
     ~Voyage();
 };
 #endif

@@ -7,6 +7,7 @@
 #include "Avion.h"
 #include "Train.h"
 #include "Voyage.h"
+#include "Flux.h"
 
 /*
             Latitude       Longitude
@@ -28,11 +29,6 @@ Naples      40.851         14.268
 #define NAPLES_LAT 40.851
 #define NAPLES_LON 14.268
 
-#define BRUXELLES 0
-#define PARIS 1
-#define LYON 2
-#define ROME 3
-#define NAPLES 4
 
 
 int main(int argc, char const *argv[]) {
@@ -44,11 +40,13 @@ int main(int argc, char const *argv[]) {
                              new AeroportRegional("Naples", NAPLES_LAT, NAPLES_LON)};
 
 
-    int flux[5][5] = {{-1, 13000, 5500, 4500, 2000},
+    /*int flux[5][5] = {{-1, 13000, 5500, 4500, 2000},
                       {12500, -1, 18000, 10000, 4000},
                       {6000, 19000, -1, 6500, 2500},
                       {5000, 9000, 6000, -1, 11000},
-                      {2500, 5000, 3000, 10000, -1}};
+                      {2500, 5000, 3000, 10000, -1}};*/
+
+    Flux* f = Flux::getInstance();
 
     terminaux[PARIS]->ajoutLiaison2sens(terminaux[ROME], 2, AVION);
     terminaux[LYON]->ajoutLiaison2sens(terminaux[PARIS], 2, AVION);
@@ -57,6 +55,8 @@ int main(int argc, char const *argv[]) {
     terminaux[LYON]->ajoutLiaison2sens(terminaux[NAPLES], 2, AVION);
 
     Voyage voyage(terminaux[LYON], terminaux[NAPLES]);
+
+    std::cout << f->getFlux(voyage) << std::endl;
 
     voyage.determinerCorrespondances(terminaux);
     std::cout << voyage.tempsTrajet() << std::endl;
