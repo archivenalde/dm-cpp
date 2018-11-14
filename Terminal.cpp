@@ -18,8 +18,8 @@ Terminal::Terminal()
     NBTERMINAUX++;
 }
 
-Terminal::Terminal(std::string _nom, double _latitude, double _longitude)
-: nom(_nom), position(_latitude, _longitude), indice(NBTERMINAUX)
+Terminal::Terminal(std::string _nom, double _latitude, double _longitude, double _tpsMoyen)
+: nom(_nom), position(_latitude, _longitude), tempsMoyen(_tpsMoyen), indice(NBTERMINAUX)
 {
     NBTERMINAUX++;
 }
@@ -42,15 +42,9 @@ const std::list<AbstractLigne*>& Terminal::getLiaisons() const
     return liaisons;
 }
 
-const std::map<std::pair<const Coordonnees, const Coordonnees>, int>& Terminal::getTempsMoyen() const
+double Terminal::getTempsMoyen() const
 {
     return tempsMoyen;
-}
-
-int Terminal::getTempsMoyen(const Coordonnees& _c1, const Coordonnees& _c2) const
-{
-    std::pair<const Coordonnees, const Coordonnees> coordPair = std::make_pair(_c1, _c2);
-    return tempsMoyen.find(coordPair)->second;
 }
 
 const std::map<const Coordonnees, int>& Terminal::getFlux() const

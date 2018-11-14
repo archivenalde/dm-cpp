@@ -125,7 +125,7 @@ void Voyage::determinerCorrespondances(Terminal* _noeuds)
     }
 }
 
-double Voyage::tempsTrajetTotal(int flux)
+double Voyage::tempsTrajet()
 {
     /*double tempsTotal = 0;
     double distance = 0, vitesse = 0, tempsAttente = 0;
@@ -154,9 +154,11 @@ double Voyage::tempsTrajetTotal(int flux)
     }
     */
 
-    double tempsTotal = 0;
-    double distance = 0;
+    double tempsTotal = 0, tempsAttente = 0;
+    double distance = 0, vitesse = 0;
     Terminal* origine, *suivant;
+    std::list<AbstractLigne*>::iterator next;
+
 
     for (std::list<AbstractLigne*>::iterator it = lignes.begin(); it != lignes.end(); it++)
     {
@@ -165,7 +167,16 @@ double Voyage::tempsTrajetTotal(int flux)
         distance = origine->distance(suivant->getPosition());
         vitesse = (*it)->getMoyen().getVitesse();
 
-        tempsTotal += nbVoyages * (distance/vitesse);
+        tempsTotal += (distance/vitesse);
+
+        next = std::next(it);
+        if(next != lignes.end() && suivant == (*next)->getOrigine())
+        {
+            destination = (*next)->getDestination();
+
+            tempsAttente = suivant->getTempsMoyen();
+            tempsTotal += tempsAttente;
+        }
     }
 
     return tempsTotal;

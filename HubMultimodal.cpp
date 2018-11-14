@@ -6,7 +6,7 @@ HubMultimodal::HubMultimodal()
 {}
 
 HubMultimodal::HubMultimodal(std::string _nom, double _latitude, double _longitude)
-: Terminal(_nom, _latitude, _longitude), HubAeroport(), Gare()
+: Terminal(_nom, _latitude, _longitude, 0.75), HubAeroport(), Gare()
 {
     std::cout << "Construction du hub multimodal de " << _nom << " terminée" << std::endl;
 }

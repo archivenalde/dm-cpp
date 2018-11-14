@@ -6,7 +6,7 @@ AeroportRegional::AeroportRegional()
 {}
 
 AeroportRegional::AeroportRegional(std::string _nom, double _latitude, double _longitude)
-: Terminal(_nom, _latitude, _longitude)
+: Terminal(_nom, _latitude, _longitude, 0.5)
 {
     std::cout << "Construction de l'aeroport régional de " << _nom << " terminée" << std::endl;
 }

@@ -21,7 +21,7 @@ public:
     void determinerCorrespondances(Terminal* terminauxAccessibles);
 
     void ajoutLigne(AbstractLigne*);
-    double tempsTrajetTotal(int);
+    double tempsTrajet();
     double empreinteTotale(int);
 
     ~Voyage();
