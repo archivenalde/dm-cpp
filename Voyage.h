@@ -18,7 +18,7 @@ class Voyage
 public:
     Voyage(Terminal*, Terminal*);
 
-    void determinerCorrespondances(Terminal* terminauxAccessibles);
+    void determinerCorrespondances(Terminal** terminauxAccessibles);
 
     void ajoutLigne(AbstractLigne*);
     double tempsTrajet();

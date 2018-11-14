@@ -59,10 +59,10 @@ void Voyage::ajoutLigne(AbstractLigne* ligne)
     lignes.push_back(ligne);
 }
 
-void Voyage::determinerCorrespondances(Terminal* _noeuds)
+void Voyage::determinerCorrespondances(Terminal** _noeuds)
 {
-    Terminal deb = *origine;
-    Terminal fin = *destination;
+    Terminal* deb = origine;
+    Terminal* fin = destination;
     int nb = Terminal::getNBTERMINAUX();
 
     int d[5];
@@ -79,7 +79,7 @@ void Voyage::determinerCorrespondances(Terminal* _noeuds)
         predecesseur[i] = -1;
         Q.push_back(i);
     }
-    d[deb.getIndice()] = 0;
+    d[deb->getIndice()] = 0;
 
     while(!Q.empty())
     {
@@ -88,28 +88,28 @@ void Voyage::determinerCorrespondances(Terminal* _noeuds)
 
         for (int q: Q)
         {
-            if (_noeuds[smin].estAccessible(_noeuds[q]))
+            if (_noeuds[smin]->estAccessible(_noeuds[q]))
                 maj_distances(predecesseur, d, smin, q);
         }
     }
 
     std::list<int> A;
 
-    int s = fin.getIndice();
-    while (s != deb.getIndice())
+    int s = fin->getIndice();
+    while (s != deb->getIndice())
     {
         A.push_back(s);
         s = predecesseur[s];
     }
     A.reverse();
 
-    int nor = deb.getIndice();
+    int nor = deb->getIndice();
     while (! A.empty())
     {
-        int next = _noeuds[nor].getIndice();
+        int next = _noeuds[nor]->getIndice();
         if (A.size() > 0)
         {
-            for (auto l : _noeuds[next].getLiaisons())
+            for (auto l : _noeuds[next]->getLiaisons())
             {
                 if (l->getDestination()->getIndice() == A.front())
                     lignes.push_back(l);

@@ -3,13 +3,14 @@
 
 #include "Terminal.h"
 
-class AeroportInternational : virtual public Terminal
+class AeroportInternational : public Terminal
 {
-protected:
-    AeroportInternational();
+    static int NB_LIAISONS_MAX;
 public:
     AeroportInternational(std::string, double, double);
     ~AeroportInternational();
+
+    bool ajoutLiaisonPossible() const;
 };
 
 #endif

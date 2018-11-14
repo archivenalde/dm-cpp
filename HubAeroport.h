@@ -5,11 +5,13 @@
 
 class HubAeroport : virtual public Terminal
 {
-protected:
-    HubAeroport();
+    static int NB_LIAISONS_MAX;
 public:
     HubAeroport(std::string, double, double);
     ~HubAeroport();
+
+    bool ajoutLiaisonPossible() const;
+
 };
 
 #endif

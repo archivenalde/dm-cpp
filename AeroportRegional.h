@@ -5,11 +5,12 @@
 
 class AeroportRegional : virtual public Terminal
 {
-protected:
-    AeroportRegional();
+    static int NB_LIAISONS_MAX;
 public:
     AeroportRegional(std::string, double, double);
     ~AeroportRegional();
+
+    bool ajoutLiaisonPossible() const;
 };
 
 #endif

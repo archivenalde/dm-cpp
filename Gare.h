@@ -3,13 +3,14 @@
 
 #include "Terminal.h"
 
-class Gare : virtual public Terminal
+class Gare : public Terminal
 {
-protected:
-    Gare();
+    static int NB_LIAISONS_MAX;
 public:
     Gare(std::string, double, double);
     ~Gare();
+
+    bool ajoutLiaisonPossible() const;
 };
 
 #endif

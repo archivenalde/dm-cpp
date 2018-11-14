@@ -16,6 +16,7 @@ enum Moyen_e {TRAIN, AVION_ELECTRIQUE, AVION};
 
 class Terminal
 {
+protected:
     static int NBTERMINAUX;
 
     std::string nom;
@@ -26,7 +27,6 @@ class Terminal
 
     const int indice;
 
-protected:
     Terminal();
 
 public:
@@ -34,19 +34,21 @@ public:
 
     const std::string& getNom() const;
     const Coordonnees& getPosition() const;
-    const std::list<AbstractLigne*>& getLiaisons() const;
+    virtual const std::list<AbstractLigne*>& getLiaisons() const;
     double getTempsMoyen() const;
     const std::map<const Coordonnees, int>& getFlux() const;
+    static int getNBTERMINAUX();
+    int getIndice() const;
+
+    virtual bool ajoutLiaisonPossible() const = 0;
     virtual void ajoutLiaison1sens(Terminal* _dest, int _frequence, Moyen_e _m);
     void ajoutLiaison2sens(Terminal* _dest, int _frequence, Moyen_e _m);
     void retirerLiaison(AbstractLigne*);
 
-    bool estAccessible(const Terminal&);
+    bool estAccessible(Terminal*);
 
     double distance(const Coordonnees&) const;
 
-    static int getNBTERMINAUX();
-    int getIndice() const;
 
     ~Terminal();
 };

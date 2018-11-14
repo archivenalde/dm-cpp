@@ -1,10 +1,6 @@
 #include <iostream>
 #include "Gare.h"
 
-Gare::Gare()
-: Terminal()
-{}
-
 Gare::Gare(std::string _nom, double _latitude, double _longitude)
 : Terminal(_nom, _latitude, _longitude, 0.25)
 {
@@ -13,3 +9,8 @@ Gare::Gare(std::string _nom, double _latitude, double _longitude)
 
 Gare::~Gare()
 {}
+
+bool Gare::ajoutLiaisonPossible() const
+{
+    return true;
+}

@@ -1,6 +1,7 @@
 #include <list>
 #include <map>
 #include <cmath>
+#include <iostream>
 
 #include "Terminal.h"
 #include "AbstractLigne.h"
@@ -18,8 +19,8 @@ Terminal::Terminal()
     NBTERMINAUX++;
 }
 
-Terminal::Terminal(std::string _nom, double _latitude, double _longitude, double _tpsMoyen)
-: nom(_nom), position(_latitude, _longitude), tempsMoyen(_tpsMoyen), indice(NBTERMINAUX)
+Terminal::Terminal(std::string _nom, double _lat, double _lon, double _tpsMoyen)
+: nom(_nom), position(_lat, _lon), tempsMoyen(_tpsMoyen), indice(NBTERMINAUX)
 {
     NBTERMINAUX++;
 }
@@ -54,21 +55,28 @@ const std::map<const Coordonnees, int>& Terminal::getFlux() const
 
 void Terminal::ajoutLiaison1sens(Terminal* _dest, int _frequence, Moyen_e _m)
 {
-    AbstractLigne* l;
-    switch(_m) {
-        case TRAIN:
-            l = new Ligne<Train>(this, _dest, _frequence);
-            liaisons.push_back(l);
-            break;
-        case AVION_ELECTRIQUE:
-            l = new Ligne<AvionElectrique>(this, _dest, _frequence);
-            liaisons.push_back(l);
-            break;
-        case AVION:
-            l = new Ligne<Avion>(this, _dest, _frequence);
-            liaisons.push_back(l);
-            break;
-    };
+    if (ajoutLiaisonPossible())
+    {
+        AbstractLigne* l;
+        switch(_m) {
+            case TRAIN:
+                l = new Ligne<Train>(this, _dest, _frequence);
+                liaisons.push_back(l);
+                break;
+            case AVION_ELECTRIQUE:
+                l = new Ligne<AvionElectrique>(this, _dest, _frequence);
+                liaisons.push_back(l);
+                break;
+            case AVION:
+                l = new Ligne<Avion>(this, _dest, _frequence);
+                liaisons.push_back(l);
+                break;
+        };
+    }
+    else
+    {
+        std::cout << "Il y a trop de liaisons dans le Terminal " << nom << ". L'ajout de la liaison ne peut se faire." << std::endl;
+    }
     /*if (l->getOrigine() == this)
     {
         liaisons.push_back(l);
@@ -82,13 +90,13 @@ void Terminal::ajoutLiaison2sens(Terminal* _dest, int _frequence, Moyen_e _m)
     _dest->ajoutLiaison1sens(this, _frequence, _m);
 }
 
-bool Terminal::estAccessible(const Terminal& _t)
+bool Terminal::estAccessible(Terminal* _t)
 {
     std::list<AbstractLigne*>::iterator it;
 
     for (it = liaisons.begin(); it != liaisons.end(); ++it)
     {
-        if ((*it)->getDestination()->position == _t.position)
+        if ((*it)->getDestination()->position == _t->position)
             return true;
     }
 

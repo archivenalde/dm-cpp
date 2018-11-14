@@ -1,9 +1,7 @@
 #include <iostream>
 #include "HubAeroport.h"
 
-HubAeroport::HubAeroport()
-: Terminal()
-{}
+int HubAeroport::NB_LIAISONS_MAX = 12;
 
 HubAeroport::HubAeroport(std::string _nom, double _latitude, double _longitude)
 : Terminal(_nom, _latitude, _longitude, 0.75)
@@ -13,3 +11,8 @@ HubAeroport::HubAeroport(std::string _nom, double _latitude, double _longitude)
 
 HubAeroport::~HubAeroport()
 {}
+
+bool HubAeroport::ajoutLiaisonPossible() const
+{
+    return (int)liaisons.size() < HubAeroport::NB_LIAISONS_MAX;
+}
