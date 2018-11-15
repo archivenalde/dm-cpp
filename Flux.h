@@ -1,8 +1,7 @@
 #ifndef FLUX_H
 #define FLUX_H
 
-enum Ville_e { BRUXELLES, PARIS, LYON, ROME, NAPLES};
-#define NB_VILLES NAPLES + 1
+enum Ville_e {PARIS, BRUXELLES, LYON, ROME, NAPLES, NB_VILLES};
 
 #include "Voyage.h"
 #include "Terminal.h"

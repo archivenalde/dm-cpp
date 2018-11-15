@@ -50,7 +50,7 @@ public:
     double distance(const Coordonnees&) const;
 
 
-    ~Terminal();
+    virtual ~Terminal();
 };
 
 #endif

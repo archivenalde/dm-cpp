@@ -106,15 +106,14 @@ bool Terminal::estAccessible(Terminal* _t)
 
 double Terminal::distance(const Coordonnees& _pos) const
 {
-    double horizontale, verticale, d = 2 * M_PI * RT/360.0;
+    double longitude, coeff = M_PI/180;
 
-    Coordonnees posOrigineRad(position.getLatitude() * M_PI/180, position.getLongitude() * M_PI/180);
-    Coordonnees posArriveRad(_pos.getLatitude() * M_PI/180, _pos.getLongitude() * M_PI/180);
+    Coordonnees posOrigineRad(position.getLatitude() * coeff, position.getLongitude() * coeff);
+    Coordonnees posArriveRad(_pos.getLatitude() * coeff, _pos.getLongitude() * coeff);
 
-    verticale = sin((posArriveRad.getLatitude() - posOrigineRad.getLatitude())/2);
-    horizontale = sin((posArriveRad.getLongitude() - posOrigineRad.getLongitude())/2);
+    longitude = cos((posArriveRad.getLongitude() - posOrigineRad.getLongitude()));
 
-    return 2.0 * RT * asin(sqrt(verticale * verticale + cos(posOrigineRad.getLatitude()) * cos(posArriveRad.getLatitude()) * horizontale * horizontale));
+    return RT * acos(cos(posOrigineRad.getLatitude())*cos(posArriveRad.getLatitude())*longitude + sin(posOrigineRad.getLatitude())*sin(posArriveRad.getLatitude()));
 }
 
 int Terminal::getNBTERMINAUX()
