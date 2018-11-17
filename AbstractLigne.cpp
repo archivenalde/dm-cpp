@@ -22,3 +22,8 @@ int AbstractLigne::getFrequence() const
 {
   return do_getFrequence();
 }
+
+void AbstractLigne::setFrequence(int _f)
+{
+  do_setFrequence(_f);
+}

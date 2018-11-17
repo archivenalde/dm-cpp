@@ -7,16 +7,19 @@ class Terminal;
 
 class AbstractLigne {
 
+protected:
   virtual const Moyen& do_getMoyen() const = 0;
   virtual Terminal* do_getOrigine() const = 0;
   virtual Terminal* do_getDestination() const = 0;
   virtual int do_getFrequence() const = 0;
+  virtual void do_setFrequence(int) = 0;
 
 public:
   const Moyen& getMoyen() const;
   Terminal* getOrigine() const;
   Terminal* getDestination() const;
   int getFrequence() const;
+  void setFrequence(int);
 
   friend bool operator==(const AbstractLigne& l1, const AbstractLigne& l2)
   {

@@ -16,7 +16,7 @@ public:
     HubMultimodal(std::string, double, double);
     ~HubMultimodal();
 
-    void ajoutLiaison1sens(Terminal* _dest, int _frequence, Moyen_e _m);
+    void ajoutLiaison1sens(Terminal* _dest, Moyen_e _m);
     const std::list<AbstractLigne*>& getLiaisons() const;
     bool ajoutLiaisonPossible() const;
 };

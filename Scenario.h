@@ -12,15 +12,39 @@
 #define NAPLES_LAT 40.852921
 #define NAPLES_LON 14.272446
 
+#include "Terminal.h"
+#include "Flux.h"
+
+
+
 class Scenario
 {
-public:
+    Terminal* terminaux[NB_VILLES];
     void scenario1();
     void scenario2();
     void scenario3();
     void scenario4();
     void scenario5();
     void scenario6();
+
+    double tempsTrajet[NB_VILLES][NB_VILLES];
+    double empreinte[NB_VILLES][NB_VILLES];
+
+    void setFluxAll();
+    void calculsInformationsVoyages();
+
+public:
+    Scenario(int);
+
+    const Terminal& getTerminal(int);
+    double getTempsTrajet(Ville_e v, Ville_e u);
+    double getTempsTrajet(int v, int u);
+
+    double getEmpreinte(Ville_e v, Ville_e u);
+    double getEmpreinte(int v, int u);
+    void afficherInformationsVoyages();
+
+
 };
 
 #endif

@@ -39,15 +39,17 @@ public:
     const std::map<const Coordonnees, int>& getFlux() const;
     static int getNBTERMINAUX();
     int getIndice() const;
+    void setFlux(Terminal**);
 
     virtual bool ajoutLiaisonPossible() const = 0;
-    virtual void ajoutLiaison1sens(Terminal* _dest, int _frequence, Moyen_e _m);
-    void ajoutLiaison2sens(Terminal* _dest, int _frequence, Moyen_e _m);
+    virtual void ajoutLiaison1sens(Terminal* _dest, Moyen_e _m);
+    void ajoutLiaison2sens(Terminal* _dest, Moyen_e _m);
     void retirerLiaison(AbstractLigne*);
 
     bool estAccessible(Terminal*);
 
     double distance(const Coordonnees&) const;
+
 
 
     virtual ~Terminal();

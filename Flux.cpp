@@ -25,6 +25,11 @@ const int Flux::getFlux(Ville_e v, Ville_e u) const
     return flux[v][u];
 }
 
+const int Flux::getFlux(int v, int u) const
+{
+    return flux[v][u];
+}
+
 const int Flux::getFlux(const Voyage& v) const
 {
     return flux[v.getOrigine()->getIndice()][v.getDestination()->getIndice()];

@@ -17,9 +17,10 @@ class Ligne : public AbstractLigne
     Terminal* do_getOrigine() const;
     Terminal* do_getDestination() const;
     int do_getFrequence() const;
+    void do_setFrequence(int);
 
 public:
-    Ligne(Terminal*, Terminal*, double);
+    Ligne(Terminal*, Terminal*);
     ~Ligne();
 
 };

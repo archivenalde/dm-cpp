@@ -2,8 +2,8 @@
 #include "Moyen.h"
 
 template<class T>
-Ligne<T>::Ligne(Terminal* _origine, Terminal* _destination, double _frequence)
-: moyen(), origine(_origine), destination(_destination), frequence(_frequence)
+Ligne<T>::Ligne(Terminal* _origine, Terminal* _destination)
+: moyen(), origine(_origine), destination(_destination), frequence(-1)
 {}
 
 template<class T>
@@ -32,4 +32,10 @@ template<class T>
 int Ligne<T>::do_getFrequence() const
 {
     return frequence;
+}
+
+template<class T>
+void Ligne<T>::do_setFrequence(int _frequence)
+{
+    frequence = _frequence;
 }

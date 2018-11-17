@@ -35,20 +35,21 @@ int trouve_min(int* _distances, const std::list<int>& _Q)
     return sommet;
 }
 
-void maj_distances(int* _pred, int* _dist, int sdeb, int sfin)
+void maj_distances(int* _pred, int* _dist, int sdeb, int sfin, double poids)
 {
-    if (estPlusPetit(_dist[sdeb] + 1, _dist[sfin])) // Peut_être remplacer + 1 par + distance de Terminal...
+    if (estPlusPetit(_dist[sdeb] + poids, _dist[sfin])) // Peut_être remplacer + 1 par + distance de Terminal...
     {
-        _dist[sfin] = _dist[sdeb] + 1;
+        _dist[sfin] = _dist[sdeb] + poids;
         _pred[sfin] = sdeb;
     }
 }
 
 
-Voyage::Voyage(Terminal* _origine, Terminal* _destination)
+Voyage::Voyage(Terminal* _origine, Terminal* _destination, Terminal** _noeuds)
 : origine(_origine), destination(_destination)
 {
     std::cout << "Voyage entre " << origine->getNom() << " et " << destination->getNom() << " programmé"<< std::endl;
+    determinerCorrespondances(_noeuds);
 }
 
 Voyage::~Voyage()
@@ -67,8 +68,7 @@ void Voyage::determinerCorrespondances(Terminal** _noeuds)
 
     int d[5];
     int predecesseur[5];
-    /*int *d = new int[nb];
-    int *predecesseur = new int[nb];*/
+
 
     std::list<int> Q; //Ensemble des noeuds, i est leur indice
 
@@ -89,7 +89,7 @@ void Voyage::determinerCorrespondances(Terminal** _noeuds)
         for (int q: Q)
         {
             if (_noeuds[smin]->estAccessible(_noeuds[q]))
-                maj_distances(predecesseur, d, smin, q);
+                maj_distances(predecesseur, d, smin, q, _noeuds[q]->distance(_noeuds[smin]->getPosition()));
         }
     }
 
@@ -127,33 +127,6 @@ void Voyage::determinerCorrespondances(Terminal** _noeuds)
 
 double Voyage::tempsTrajet()
 {
-    /*double tempsTotal = 0;
-    double distance = 0, vitesse = 0, tempsAttente = 0;
-    int nbVoyages = 0;
-    Terminal* origine,* suivant,* destination;
-    std::list<AbstractLigne*>::iterator next;
-
-    for (std::list<AbstractLigne*>::iterator it = lignes.begin(); it != lignes.end(); it++)
-	{
-        origine = (*it)->getOrigine();
-        suivant = (*it)->getDestination();
-        nbVoyages = std::ceil((double)flux/((*it)->getMoyen().getCapacite()));
-        distance = origine->distance(suivant->getPosition());
-        vitesse = (*it)->getMoyen().getVitesse();
-
-        tempsTotal += nbVoyages * (distance/vitesse);
-
-        next = std::next(it);
-        if(next != lignes.end() && suivant == (*next)->getOrigine())
-        {
-            destination = (*next)->getDestination();
-
-            tempsAttente = suivant->getTempsMoyen(origine->getPosition(), destination->getPosition());
-            tempsTotal += nbVoyages * tempsAttente;
-        }
-    }
-    */
-
     double tempsTotal = 0, tempsAttente = 0;
     double distance = 0, vitesse = 0;
     Terminal* origine, *suivant;
@@ -182,7 +155,7 @@ double Voyage::tempsTrajet()
     return tempsTotal;
 }
 
-double Voyage::empreinteTotale(int flux)
+double Voyage::empreinteTotale(int _flux)
 {
     double empreinteTotale = 0;
     double distance = 0, empreinte = 0;
@@ -194,7 +167,7 @@ double Voyage::empreinteTotale(int flux)
         origine = (*it)->getOrigine();
         destination = (*it)->getDestination();
         // ceil : entier superieur. Recupere le nombre de moyens differents pour transporter tous les passagers
-        nbVoyages = std::ceil((double)flux/(*it)->getMoyen().getCapacite());
+        nbVoyages = std::ceil((double)_flux/(*it)->getMoyen().getCapacite());
         distance = origine->distance(destination->getPosition());
         empreinte = (*it)->getMoyen().getEmpreinte();
 

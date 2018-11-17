@@ -16,7 +16,7 @@ class Voyage
     std::list<AbstractLigne*> lignes;
 
 public:
-    Voyage(Terminal*, Terminal*);
+    Voyage(Terminal*, Terminal*, Terminal**);
 
     void determinerCorrespondances(Terminal** terminauxAccessibles);
 

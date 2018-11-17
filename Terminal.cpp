@@ -9,6 +9,7 @@
 #include "Train.h"
 #include "Avion.h"
 #include "AvionElectrique.h"
+#include "Flux.h"
 
 int Terminal::NBTERMINAUX = 0;
 
@@ -26,7 +27,9 @@ Terminal::Terminal(std::string _nom, double _lat, double _lon, double _tpsMoyen)
 }
 
 Terminal::~Terminal()
-{}
+{
+    NBTERMINAUX--;
+}
 
 const std::string& Terminal::getNom() const
 {
@@ -53,22 +56,22 @@ const std::map<const Coordonnees, int>& Terminal::getFlux() const
     return flux;
 }
 
-void Terminal::ajoutLiaison1sens(Terminal* _dest, int _frequence, Moyen_e _m)
+void Terminal::ajoutLiaison1sens(Terminal* _dest, Moyen_e _m)
 {
     if (ajoutLiaisonPossible())
     {
         AbstractLigne* l;
         switch(_m) {
             case TRAIN:
-                l = new Ligne<Train>(this, _dest, _frequence);
+                l = new Ligne<Train>(this, _dest);
                 liaisons.push_back(l);
                 break;
             case AVION_ELECTRIQUE:
-                l = new Ligne<AvionElectrique>(this, _dest, _frequence);
+                l = new Ligne<AvionElectrique>(this, _dest);
                 liaisons.push_back(l);
                 break;
             case AVION:
-                l = new Ligne<Avion>(this, _dest, _frequence);
+                l = new Ligne<Avion>(this, _dest);
                 liaisons.push_back(l);
                 break;
         };
@@ -77,24 +80,21 @@ void Terminal::ajoutLiaison1sens(Terminal* _dest, int _frequence, Moyen_e _m)
     {
         std::cout << "Il y a trop de liaisons dans le Terminal " << nom << ". L'ajout de la liaison ne peut se faire." << std::endl;
     }
-    /*if (l->getOrigine() == this)
-    {
-        liaisons.push_back(l);
-        l->getDestination()->liaisons.push_back(l);
-    }*/
+
 }
 
-void Terminal::ajoutLiaison2sens(Terminal* _dest, int _frequence, Moyen_e _m)
+void Terminal::ajoutLiaison2sens(Terminal* _dest, Moyen_e _m)
 {
-    ajoutLiaison1sens(_dest, _frequence, _m);
-    _dest->ajoutLiaison1sens(this, _frequence, _m);
+    ajoutLiaison1sens(_dest, _m);
+    _dest->ajoutLiaison1sens(this, _m);
 }
 
 bool Terminal::estAccessible(Terminal* _t)
 {
     std::list<AbstractLigne*>::iterator it;
+    std::list<AbstractLigne*> tmpl = getLiaisons();
 
-    for (it = liaisons.begin(); it != liaisons.end(); ++it)
+    for (it = tmpl.begin(); it != tmpl.end(); ++it)
     {
         if ((*it)->getDestination()->position == _t->position)
             return true;
@@ -124,4 +124,14 @@ int Terminal::getNBTERMINAUX()
 int Terminal::getIndice() const
 {
     return indice;
+}
+
+void Terminal::setFlux(Terminal** _t)
+{
+    Flux* f = Flux::getInstance();
+
+    for (int i = 0; i < NB_VILLES; ++i)
+    {
+        flux.insert(std::pair<const Coordonnees, int>(_t[i]->getPosition(), f->getFlux(this->indice, i)));
+    }
 }

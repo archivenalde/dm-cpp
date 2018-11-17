@@ -1,7 +1,7 @@
 #ifndef FLUX_H
 #define FLUX_H
 
-enum Ville_e {PARIS, BRUXELLES, LYON, ROME, NAPLES, NB_VILLES};
+enum Ville_e {BRUXELLES, PARIS, LYON, ROME, NAPLES, NB_VILLES};
 
 #include "Voyage.h"
 #include "Terminal.h"
@@ -34,6 +34,7 @@ public:
 
     const int getFlux(const Voyage&) const; //Recupere le flux d'un voyage
     const int getFlux(Ville_e v, Ville_e u) const; //Recupere le flux du voyage de v a u
+    const int getFlux(int v, int u) const; //Recupere le flux du voyage de v a u
 };
 
 #endif
