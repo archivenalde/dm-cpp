@@ -15,6 +15,7 @@ protected:
   virtual void do_setFrequence(int) = 0;
 
 public:
+  virtual ~AbstractLigne() {};
   const Moyen& getMoyen() const;
   Terminal* getOrigine() const;
   Terminal* getDestination() const;

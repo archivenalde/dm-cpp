@@ -28,11 +28,17 @@ Terminal::Terminal(std::string _nom, double _lat, double _lon, double _tpsMoyen)
 
 Terminal::~Terminal()
 {
+    while(!liaisons.empty())
+    {
+        delete liaisons.front();
+        liaisons.pop_front();
+    }
     NBTERMINAUX--;
 }
 
 const std::string& Terminal::getNom() const
 {
+
     return nom;
 }
 

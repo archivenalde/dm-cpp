@@ -9,7 +9,7 @@
 class HubMultimodal : public HubAeroport
 {
 private:
-    Gare gare;
+    Terminal* gare;
 
     std::list<AbstractLigne*> liaisonsGareAeroport;
 public:

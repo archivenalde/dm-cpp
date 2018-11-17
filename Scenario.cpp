@@ -19,6 +19,7 @@ Scenario::Scenario(int _n)
         case 6: scenario6(); break;
         default: std::cout << "Le scenario attendu est un nombre entre 1 et 6" << std::endl; break;
     }
+    Flux::destroyInstance();
 }
 
 void Scenario::scenario1()

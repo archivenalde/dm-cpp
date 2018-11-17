@@ -7,21 +7,28 @@
 #include "AvionElectrique.h"
 
 HubMultimodal::HubMultimodal(std::string _nom, double _latitude, double _longitude)
-: HubAeroport(_nom, _latitude, _longitude), gare(_nom, _latitude, _longitude)
+: HubAeroport(_nom, _latitude, _longitude)
 {
+    gare = new Gare(_nom, _latitude, _longitude);
     NBTERMINAUX--; // Pour eviter que la gare et le HubAeroport ne soit compter deux fois.
     std::cout << "Construction du hub multimodal de " << _nom << " terminée" << std::endl;
 }
 
 HubMultimodal::~HubMultimodal()
 {
+    while(!liaisonsGareAeroport.empty())
+    {
+        delete liaisonsGareAeroport.front();
+        liaisonsGareAeroport.pop_front();
+    }
+    delete gare;
     NBTERMINAUX++; //Symetrique au constructeur, pour ne retirer que le HubMultimodal, et non la gare en plus.
 }
 
 void HubMultimodal::ajoutLiaison1sens(Terminal* _dest, Moyen_e _m)
 {
     if (_m == TRAIN)
-        gare.ajoutLiaison1sens(_dest, TRAIN);
+        gare->ajoutLiaison1sens(_dest, TRAIN);
     else
         HubAeroport::ajoutLiaison1sens(_dest, _m);
 
@@ -50,5 +57,5 @@ const std::list<AbstractLigne*>& HubMultimodal::getLiaisons() const
 
 bool HubMultimodal::ajoutLiaisonPossible() const
 {
-    return HubAeroport::ajoutLiaisonPossible() && gare.ajoutLiaisonPossible();
+    return HubAeroport::ajoutLiaisonPossible() && gare->ajoutLiaisonPossible();
 }
