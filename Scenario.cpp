@@ -208,6 +208,8 @@ void Scenario::calculsInformationsVoyages()
 
 void Scenario::afficherInformationsVoyages()
 {
+    double empreinte_totale = 0;
+    double tps_max = 0;
     for (int i = 0; i < 5; i++)
     {
         for (int j = 0; j < 5; ++j)
@@ -215,11 +217,15 @@ void Scenario::afficherInformationsVoyages()
             if (i != j)
             {
                 std::cout << "Le voyage de " << terminaux[i]->getNom() << " a " << terminaux[j]->getNom() << " met " << tempsTrajet[i][j] << "heure(s)." << std::endl;
+                if (tempsTrajet[i][j] > tps_max) tps_max = tempsTrajet[i][j];
                 std::cout << "Le voyage a une empreinte totale de " << empreinte[i][j] << " kg." << std::endl;
+                empreinte_totale += empreinte[i][j];
                 std::cout << std::endl;
             }
         }
     }
+    std::cout << "Le temps de trajet maximum est " << tps_max << std::endl;
+    std::cout << "L'empreinte totale du scenario est " << empreinte_totale << std::endl;
 }
 
 double Scenario::getTempsTrajet(Ville_e _v, Ville_e _u)
